@@ -4,9 +4,9 @@ import Link from "next/link";
 const Navbar = ({ toggle }: { toggle: () => void }) => {
   return (
     <>
-      <div className="w-full h-20 bg-emerald-800 sticky top-0">
+      <div className="w-full h-16 bg-black sticky top-0 border-b-2 border-neutral-800">
         <div className="container mx-auto px-4 h-full">
-          <div className="flex justify-between items-center h-full">
+          <div className="flex items-center h-full">
             <button
               type="button"
               className="inline-flex items-center md:hidden"
@@ -24,7 +24,14 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
                 />
               </svg>
             </button>
-            <ul className="hidden md:flex float:right gap-x-6 text-white ">
+
+            <h1 className="text-4xl sm:text-7xl font-extrabold relative z-20 bg-clip-text py-8 tracking-widest scale-50">
+              Fuze
+              <span className="text-black text-4xl font-bold me-2 px-2.5 py-0.5 rounded dark:bg-blue-200 dark:bg-white ms-2 relative top-[-0.15em] tracking-normal">
+                ai
+              </span>
+            </h1>
+            <ul className="hidden md:flex float:right gap-x-6 text-neutral-400 ">
               <li>
                 <Link href="/">
                   <p>Home</p>
@@ -44,3 +51,4 @@ const Navbar = ({ toggle }: { toggle: () => void }) => {
 };
 
 export default Navbar;
+
