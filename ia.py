@@ -1,12 +1,18 @@
 import os
 import random
+import sys
 from PIL import Image
 
+param1 = sys.argv[1]
+param2 = sys.argv[2]
+param3 = sys.argv[3]
+param4 = sys.argv[4]
+
 # Chemins vers les dossiers contenant les images
-animal_folder = "cats"
-emotion_folder = "dogs"
-place_folder = "cats"
-time_folder = "character-icons"
+animal_folder = param1
+emotion_folder = param2
+place_folder = param3
+time_folder = param4
 
 # Liste des options pour chaque catégorie
 animals = os.listdir(animal_folder)

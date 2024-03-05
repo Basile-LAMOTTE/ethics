@@ -11,7 +11,13 @@ app.use(bodyParser.json());
 // Define a POST route to receive JSON data containing a single sentence
 app.post("/image", (req, res) => {
   // Execute the Python script with parameters
-  const pythonProcess = spawn("python3", ["ia.py"]);
+  const pythonProcess = spawn("python3", [
+    "ia.py",
+    req.body.param1,
+    req.body.param2,
+    req.body.param3,
+    req.body.param4,
+  ]);
 
   pythonProcess.stderr.on("data", (data) => {
     console.error(`Python script error: ${data}`);
