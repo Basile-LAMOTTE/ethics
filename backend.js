@@ -2,8 +2,10 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const { spawn } = require("child_process");
 const path = require("path");
+const cors = require("cors");
 
 const app = express();
+app.use(cors());
 
 // Middleware to parse JSON bodies
 app.use(bodyParser.json());
@@ -11,6 +13,9 @@ app.use(bodyParser.json());
 // Define a POST route to receive JSON data containing a single sentence
 app.post("/image", (req, res) => {
   // Execute the Python script with parameters
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  console.log(req.body);
+
   const pythonProcess = spawn("python3", [
     "ia.py",
     req.body.param1,
@@ -30,7 +35,7 @@ app.post("/image", (req, res) => {
 });
 
 // Start the server
-const PORT = process.env.PORT || 3000;
+const PORT = 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
