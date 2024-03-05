@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const { spawn } = require("child_process");
 const path = require("path");
 
 const app = express();
@@ -9,11 +10,14 @@ app.use(bodyParser.json());
 
 // Define a POST route to receive JSON data containing a single sentence
 app.post("/image", (req, res) => {
-  // Assuming your image file is named "example.jpg" and located in a folder named "images" in your project directory
-  const imagePath = path.join(__dirname, "images", "example.jpg");
+  // Execute the Python script with parameters
+  const pythonProcess = spawn("python3", ["ia.py"]);
 
-  // Assuming you want to log the received sentence to the console
-  console.log("Received sentence:", req.body.sentence);
+  pythonProcess.stderr.on("data", (data) => {
+    console.error(`Python script error: ${data}`);
+  });
+
+  const imagePath = path.join(__dirname, "images", "image.png");
 
   // Serve the image file
   res.sendFile(imagePath);
