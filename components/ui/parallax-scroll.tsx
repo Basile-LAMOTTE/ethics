@@ -3,52 +3,15 @@ import { useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { ParallaxScroll } from "@/components/ui/parallax-scroll";
-import { cn } from "./utils";
+import { cn } from "@/utils/cn";
 
-const images: string[] = [
-  "/images/image_generee.png",
-  "/images/image.png",
-  "/images/tmp6hc9zwbh.png",
-  "/images/tmp7gz83ryg.png",
-  "/images/tmp9_jtn00p.png",
-  "/images/tmp9zucqpnr.png",
-  "/images/tmparsx8u6q.png",
-  "/images/tmpbk278luk.png",
-  "/images/tmpepo7wkgz.png",
-  "/images/tmpevo9l0bq.png",
-  "/images/tmpf99b6noi.png",
-  "/images/tmpgoltzxw9.png",
-  "/images/tmpj1n_zky0.png",
-  "/images/tmpkn86o_28.png",
-  "/images/tmploqxaqu9.png",
-  "/images/tmpnsczaxgn.png",
-  "/images/tmpoygsfli4.png",
-  "/images/tmpp5lxs2kv.png",
-  "/images/tmpqgo05s5z.png",
-  "/images/tmpseutinn4.png",
-  "/images/tmpsiduv4ha.png",
-  "/images/tmpt55epzh6.png",
-  "/images/tmptbfz8wtn.png",
-  "/images/tmpwa4gyxc0.png",
-  "/images/tmpxwr2udqz.png",
-  "/images/tmpyuqcyc4x.png",
-  "/images/tmpyyw1ulg6.png",
-  "/images/tmpz263a0qp.png",
-  "/images/tmpzw39pbzk.png",
-];
-
-export default function Gallery() {
-  return (
-    <div className="h-full w-full dark:bg-black bg-white  dark:bg-dot-white/[0.2] bg-dot-black/[0.2] relative flex items-center justify-center">
-      <div className="z-0 absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
-      <ParallaxScroll className="z-10" images={images} />;
-    </div>
-  );
-}
-
-const Gallery2 = ({ className }: { className?: string }) => {
-  //   return <div>Gallery</div>;
+export const ParallaxScroll = ({
+  images,
+  className,
+}: {
+  images: string[];
+  className?: string;
+}) => {
   const gridRef = useRef<any>(null);
   const { scrollYProgress } = useScroll({
     container: gridRef, // remove this if your container is not fixed height
@@ -67,22 +30,13 @@ const Gallery2 = ({ className }: { className?: string }) => {
 
   return (
     <div
-      className={cn(
-        "h-full items-start overflow-y-auto w-full dark:bg-dot-white/[0.2]",
-        className,
-      )}
+      className={cn("h-[90rem] items-start overflow-y-auto w-full", className)}
       ref={gridRef}
     >
       <div
-        className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-start  max-w-5xl mx-auto gap-10 py-40 px-10"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-start  max-w-5xl mx-auto gap-10 py-40 px-10"
         ref={gridRef}
       >
-        {/* <Image
-              src="/images/image_generee.png"
-              width={500}
-              height={500}
-              alt="Picture of the author"
-            /> */}
         <div className="grid gap-10">
           {firstPart.map((el, idx) => (
             <motion.div
@@ -129,5 +83,3 @@ const Gallery2 = ({ className }: { className?: string }) => {
     </div>
   );
 };
-
-// export default Gallery;
